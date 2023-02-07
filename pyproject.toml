@@ -9,6 +9,8 @@ packages = [{include = "cartoon_face_recognition"}]
 [tool.poetry.dependencies]
 python = "^3.8"
 jupyter = "^1.0.0"
+facenet-pytorch = "^2.5.2"
+matplotlib = "^3.6.3"
 
 
 [build-system]
