@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "cartoon-face-recognition"
+version = "0.1.0"
+description = ""
+authors = ["desertsniper87 <torshobuet@gmail.com>"]
+readme = "README.md"
+packages = [{include = "cartoon_face_recognition"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+jupyter = "^1.0.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
