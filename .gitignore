@@ -579,3 +579,4 @@ runs/
 ./facedetector_training/mtcnn/datasets/*
 ./samples/*
 ./converted/*
+./personai_icartoonface_rectrain/*
