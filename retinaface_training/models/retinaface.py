@@ -5,9 +5,9 @@ import torchvision.models._utils as _utils
 import torch.nn.functional as F
 from collections import OrderedDict
 
-from models.net import MobileNetV1 as MobileNetV1
-from models.net import FPN as FPN
-from models.net import SSH as SSH
+from retinaface_training.models.net import MobileNetV1 as MobileNetV1
+from retinaface_training.models.net import FPN as FPN
+from retinaface_training.models.net import SSH as SSH
 
 
 
@@ -57,7 +57,7 @@ class RetinaFace(nn.Module):
         if cfg['name'] == 'mobilenet0.25':
             backbone = MobileNetV1()
             if cfg['pretrain']:
-                checkpoint = torch.load("./weights/mobilenetV1X0.25_pretrain.tar", map_location=torch.device('cpu'))
+                checkpoint = torch.load("./weights/mobilenetV1X0.25_pretrain.tar", map_location=torch.device('mps'))
                 from collections import OrderedDict
                 new_state_dict = OrderedDict()
                 for k, v in checkpoint['state_dict'].items():

@@ -2,8 +2,8 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torch.autograd import Variable
-from utils.box_utils import match, log_sum_exp
-from data import cfg_mnet
+from retinaface_training.utils.box_utils import match, log_sum_exp
+from retinaface_training.data import cfg_mnet
 GPU = cfg_mnet['gpu_train']
 
 class MultiBoxLoss(nn.Module):
@@ -70,11 +70,21 @@ class MultiBoxLoss(nn.Module):
             defaults = priors.data
             match(self.threshold, truths, defaults, self.variance, labels, landms, loc_t, conf_t, landm_t, idx)
         if GPU:
+            print('CUDA is enabled')
             loc_t = loc_t.cuda()
             conf_t = conf_t.cuda()
             landm_t = landm_t.cuda()
+        else:
+            loc_t = loc_t.to(torch.device('mps'))
+            conf_t = conf_t.to(torch.device('mps'))
+            landm_t = landm_t.to(torch.device('mps'))
 
-        zeros = torch.tensor(0).cuda()
+        if GPU:
+            zeros = torch.tensor(0).cuda()
+        else:
+            zeros = torch.tensor(0).to(torch.device('mps'))
+
+
         # landm Loss (Smooth L1)
         # Shape: [batch,num_priors,10]
         pos1 = conf_t > zeros

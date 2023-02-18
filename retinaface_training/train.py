@@ -70,10 +70,16 @@ if args.resume_net is not None:
         new_state_dict[name] = v
     net.load_state_dict(new_state_dict)
 
-if num_gpu > 1 and gpu_train:
+mps_device = None
+
+if torch.has_mps:
+    mps_device = torch.device('mps')
+    net = torch.nn.DataParallel(net).to(mps_device)
+elif num_gpu > 1 and gpu_train:
     net = torch.nn.DataParallel(net).cuda()
-else:
+elif gpu_train:
     net = net.cuda()
+
 
 cudnn.benchmark = True
 
@@ -83,8 +89,11 @@ criterion = MultiBoxLoss(num_classes, 0.35, True, 0, True, 7, 0.35, False)
 
 priorbox = PriorBox(cfg, image_size=(img_dim, img_dim))
 with torch.no_grad():
-    priors = priorbox.forward()
-    priors = priors.cuda()
+    if torch.has_mps:
+        priors = priorbox.forward().to(mps_device)
+    elif gpu_train:
+        priors = priorbox.forward()
+        priors = priors.cuda()
 
 def train():
     net.train()
@@ -119,8 +128,13 @@ def train():
 
         # load train data
         images, targets = next(batch_iterator)
-        images = images.cuda()
-        targets = [anno.cuda() for anno in targets]
+
+        if torch.has_mps:
+            images = images.to(mps_device)
+            targets = [anno.to(mps_device) for anno in targets]
+        elif gpu_train:
+            images = images.cuda()
+            targets = [anno.cuda() for anno in targets]
 
         # forward
         out = net(images)

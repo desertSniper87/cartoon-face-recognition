@@ -4,10 +4,10 @@ import random
 import pandas as pd
 import torch
 import numpy as np
-import mtcnn.train.gen_landmark as landm
-import mtcnn.train.gen_pnet_train as pnet
-import mtcnn.train.gen_rnet_train as rnet
-import mtcnn.utils.functional as func
+import facedetector_training.mtcnn.train.gen_landmark as landm
+import facedetector_training.mtcnn.train.gen_pnet_train as pnet
+import facedetector_training.mtcnn.train.gen_rnet_train as rnet
+import facedetector_training.mtcnn.utils.functional as func
 
 from torch.utils.data import Dataset, DataLoader
 

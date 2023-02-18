@@ -20,6 +20,7 @@ easydict = "^1.10"
 cython = "^0.29.33"
 progressbar2 = "^4.2.0"
 tensorboardx = "^2.6"
+pandas = "^1.5.3"
 
 
 [build-system]
