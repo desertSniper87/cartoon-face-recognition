@@ -1,5 +1,5 @@
 import argparse
-from mtcnn.train.train_net import Trainer
+from facedetector_training.mtcnn.train.train_net import Trainer
 
 parser = argparse.ArgumentParser(
     description='Generate training data for rnet.')

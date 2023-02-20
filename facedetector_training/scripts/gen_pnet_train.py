@@ -1,8 +1,8 @@
 import argparse
 
-import mtcnn.train.gen_pnet_train as gptd
-import mtcnn.train.gen_landmark as gl
-from mtcnn.datasets import get_by_name
+import facedetector_training.mtcnn.train.gen_pnet_train as gptd
+import facedetector_training.mtcnn.train.gen_landmark as gl
+from facedetector_training.mtcnn.datasets import get_by_name
 
 
 parser = argparse.ArgumentParser(

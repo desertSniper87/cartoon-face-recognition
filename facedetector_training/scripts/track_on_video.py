@@ -3,7 +3,7 @@ import sys
 import cv2
 import numpy as np
 import argparse
-import mtcnn
+import facedetector_training.mtcnn
 
 
 parser = argparse.ArgumentParser(description='this is a description')

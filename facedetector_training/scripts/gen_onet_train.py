@@ -1,10 +1,10 @@
 import argparse
 import torch
 
-import mtcnn.train.gen_onet_train as gotd
-import mtcnn.train.gen_landmark as gl
-from mtcnn.datasets import get_by_name
-from mtcnn.network.mtcnn_pytorch import PNet, RNet
+import facedetector_training.mtcnn.train.gen_onet_train as gotd
+import facedetector_training.mtcnn.train.gen_landmark as gl
+from facedetector_training.mtcnn.datasets import get_by_name
+from facedetector_training.mtcnn.network.mtcnn_pytorch import PNet, RNet
 
 
 parser = argparse.ArgumentParser(
