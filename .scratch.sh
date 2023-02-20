@@ -12,14 +12,14 @@
 FOLDER=facedetector_training
 REPO_URL=git@github.com:desertSniper87/FaceDetector-mtcnn.git
 
-# git subtree add \
-    # --prefix \
-    # $FOLDER \
-    # $REPO_URL master \
-    # --squash
-
-git subtree pull \
+git subtree add \
     --prefix \
     $FOLDER \
-    $REPO_URL master 
+    $REPO_URL master \
+    --squash
+
+# git subtree pull \
+    # --prefix \
+    # $FOLDER \
+    # $REPO_URL master 
 
